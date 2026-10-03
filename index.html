@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ne">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Loksewa Sprint | Content Generator</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+	<div class="app">
+
+		<!-- ================= SIDEBAR ================= -->
+		<aside class="sidebar">
+			<h1>Content Generator</h1>
+			<p class="hint">
+				Title र data JSON array मा टाइप गर्नुहोस्। Rows auto-number (नेपाली अंक) हुन्छन्,
+				canvas मा बढीमा 14 rows मात्र देखिन्छन्।
+			</p>
+
+			<div class="field">
+				<label for="titleInput">Title</label>
+				<input type="text" id="titleInput" value="" placeholder="नेपालका प्रमुख नदीहरू">
+			</div>
+
+			<div class="field">
+				<label for="dataInput">Data (JSON array)</label>
+				<textarea id="dataInput" spellcheck="false"></textarea>
+			</div>
+
+			<div class="note">
+				<p class="note-title">Format</p>
+				<pre class="note-code">[ 
+  { "कमला नदी": "कौशिकी" },
+  { "तामाकोशी नदी": "दुःखद" }
+]</pre>
+				<p class="note-example">आफ्नो data यही format मा लेख्नुहोस्।</p>
+			</div>
+
+			<div class="status" id="status">0 / 14 rows</div>
+
+			<div class="actions">
+				<button class="btn primary" id="printBtn" type="button">Print / Save PDF</button>
+				<button class="btn" id="sampleBtn" type="button">Sample</button>
+				<button class="btn" id="clearBtn" type="button">Clear</button>
+				<button class="btn" id="colorBtn" type="button" title="Toggle Red Color">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<circle cx="12" cy="12" r="10"></circle>
+					</svg>
+				</button>
+			</div>
+		</aside>
+
+		<!-- ================= PREVIEW ================= -->
+		<main class="preview-area">
+			<div class="print-container">
+				<div class="canvas">
+					<div class="inner-container">
+
+						<div class="header-section">
+							<div class="main-title-box" id="titleBox"></div>
+						</div>
+
+						<div class="table-container" id="rows"></div>
+
+						<!-- FIXED FOOTER -->
+						<div class="footer">
+							<div class="footer-item footer-left">
+								<div class="footer-icon-box">
+									<svg viewBox="0 0 24 24">
+										<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+									</svg>
+								</div>
+								<div class="footer-text">
+									<span>पढ्नको लागि save गर्नुहोस्</span>
+								</div>
+								<div class="curved-arrow">↓</div>
+							</div>
+
+							<div class="footer-item footer-right">
+								<div class="footer-text">
+									<span>Like &amp; Follow</span>
+								</div>
+								<div class="footer-icon-box">
+									<svg viewBox="0 0 24 24">
+										<path
+											d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+										</path>
+									</svg>
+								</div>
+								<div class="footer-icon-box">
+									<svg viewBox="0 0 24 24">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<img src="./assets/images/logo.png" alt="Watermark" class="watermark-top"
+							onerror="this.style.display='none'">
+
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+
+	<script src="./assets/js/app.js"></script>
+
+</body>
+
+</html>
