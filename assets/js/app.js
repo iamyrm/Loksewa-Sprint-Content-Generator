@@ -87,6 +87,8 @@
     var name = document.createElement("div");
     name.className = "river-name";
     name.textContent = row.name;
+    name.setAttribute("contenteditable", "true");
+    name.setAttribute("spellcheck", "false");
 
     left.appendChild(num);
     left.appendChild(name);
@@ -101,6 +103,8 @@
     var ancient = document.createElement("div");
     ancient.className = "ancient-name";
     ancient.textContent = row.ancient;
+    ancient.setAttribute("contenteditable", "true");
+    ancient.setAttribute("spellcheck", "false");
 
     right.appendChild(arrow);
     right.appendChild(ancient);
@@ -119,12 +123,6 @@
   function applyEditable() {
     titleBox.setAttribute("contenteditable", "true");
     titleBox.setAttribute("spellcheck", "false");
-
-    var names = rowsBox.querySelectorAll(".river-name, .ancient-name");
-    for (var i = 0; i < names.length; i++) {
-      names[i].setAttribute("contenteditable", "true");
-      names[i].setAttribute("spellcheck", "false");
-    }
   }
 
   // color applied to selection only
