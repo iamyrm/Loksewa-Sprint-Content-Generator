@@ -4,6 +4,13 @@
 
   var MAX_ROWS = 14;
   var NEPALI_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+  var ROW_FONT_MIN = 13;
+  var ROW_FONT_MAX = 24;
+  var ARROW_OFFSET_STEP = 1;
+  var ARROW_OFFSET_MIN = -10;
+  var ARROW_OFFSET_MAX = 20;
+  var rowFontSize = 17;
+  var arrowOffsetX = 0;
 
   var SAMPLE = [
     { "त्रिशूली नदी": "हरिश्रुङ्खनी" },
@@ -24,6 +31,13 @@
   var sampleBtn = document.getElementById("sampleBtn");
   var clearBtn = document.getElementById("clearBtn");
   var colorBtn = document.getElementById("colorBtn");
+
+  var rowFontDec = document.getElementById("rowFontDec");
+  var rowFontInc = document.getElementById("rowFontInc");
+  var rowFontValue = document.getElementById("rowFontValue");
+  var arrowLeft = document.getElementById("arrowLeft");
+  var arrowRight = document.getElementById("arrowRight");
+  var arrowValue = document.getElementById("arrowValue");
 
   dataInput.placeholder = SAMPLE_TEXT;
 
@@ -186,6 +200,55 @@
       } catch (e) {}
     });
   }
+
+  function updateRowFontSize() {
+    var size = Math.max(ROW_FONT_MIN, Math.min(ROW_FONT_MAX, rowFontSize));
+    rowFontSize = size;
+    document.documentElement.style.setProperty("--row-font-size", rowFontSize + "px");
+    if (rowFontValue) {
+      rowFontValue.textContent = rowFontSize + "px";
+    }
+  }
+
+  function updateArrowOffset() {
+    var off = Math.max(ARROW_OFFSET_MIN, Math.min(ARROW_OFFSET_MAX, arrowOffsetX));
+    arrowOffsetX = off;
+    document.documentElement.style.setProperty("--arrow-offset-x", arrowOffsetX + "px");
+    if (arrowValue) {
+      arrowValue.textContent = arrowOffsetX + "px";
+    }
+  }
+
+  if (rowFontDec) {
+    rowFontDec.addEventListener("click", function () {
+      rowFontSize -= 1;
+      updateRowFontSize();
+    });
+  }
+
+  if (rowFontInc) {
+    rowFontInc.addEventListener("click", function () {
+      rowFontSize += 1;
+      updateRowFontSize();
+    });
+  }
+
+  if (arrowLeft) {
+    arrowLeft.addEventListener("click", function () {
+      arrowOffsetX -= ARROW_OFFSET_STEP;
+      updateArrowOffset();
+    });
+  }
+
+  if (arrowRight) {
+    arrowRight.addEventListener("click", function () {
+      arrowOffsetX += ARROW_OFFSET_STEP;
+      updateArrowOffset();
+    });
+  }
+
+  updateRowFontSize();
+  updateArrowOffset();
 
   printBtn.addEventListener("click", function () {
     window.print();

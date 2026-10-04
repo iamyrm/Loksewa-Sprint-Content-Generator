@@ -8,6 +8,8 @@
 	--number-circle: #f29f05;
 	--arrow-color: #f29f05;
 	--border-color: #b97b35;
+	--row-font-size: 17px;
+	--arrow-offset-x: 0px;
 }
 
 * {
@@ -134,7 +136,7 @@ body {
 }
 
 .river-name {
-	font-size: 17px;
+	font-size: var(--row-font-size);
 	font-weight: 700;
 	color: var(--text-main);
 	word-break: break-word;
@@ -156,10 +158,11 @@ body {
 	line-height: 1;
 	margin-top: 2px;
 	flex-shrink: 0;
+	transform: translateX(var(--arrow-offset-x));
 }
 
 .ancient-name {
-	font-size: 17px;
+	font-size: var(--row-font-size);
 	font-weight: 700;
 	color: var(--text-main);
 	flex: 1;
@@ -305,7 +308,47 @@ body {
 	font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
 	font-size: 13px;
 	line-height: 1.6;
-	min-height: 320px;
+	min-height: 300px;
+}
+
+.controls {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.control-group {
+	background: #fcf6df;
+	border: 1px solid #e6d3ab;
+	border-radius: 8px;
+	padding: 8px 10px;
+}
+
+.control-label {
+	font-size: 12.5px;
+	font-weight: 700;
+	color: #0d2241;
+	margin-bottom: 6px;
+}
+
+.control-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.control-value {
+	font-size: 12.5px;
+	font-weight: 600;
+	color: #0d2241;
+	min-width: 42px;
+	text-align: center;
+}
+
+.btn.small {
+	padding: 6px 10px;
+	font-size: 13px;
 }
 
 /* placeholder shows the sample array -> keep it muted, not invisible */
@@ -479,7 +522,7 @@ body {
 
 	.river-name,
 	.ancient-name {
-		font-size: clamp(13px, 3.8vw, 17px);
+		font-size: var(--row-font-size);
 	}
 
 	.arrow,
