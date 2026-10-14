@@ -2,7 +2,8 @@
 (function () {
   "use strict";
 
-  var MAX_ROWS = 14;
+  var MAX_ROWS_BY_TEMPLATE = { cards: 14, list: 17 };
+  var currentTemplate = "cards";
   var NEPALI_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
   var ROW_FONT_MIN = 13;
   var ROW_FONT_MAX = 24;
@@ -38,6 +39,28 @@
   var arrowLeft = document.getElementById("arrowLeft");
   var arrowRight = document.getElementById("arrowRight");
   var arrowValue = document.getElementById("arrowValue");
+
+  var templateOptions = document.querySelectorAll(".template-option");
+
+  function setTemplate(name) {
+    currentTemplate = MAX_ROWS_BY_TEMPLATE[name] ? name : "cards";
+    document.body.setAttribute("data-template", currentTemplate);
+    Array.prototype.forEach.call(templateOptions, function (btn) {
+      var active = btn.getAttribute("data-template") === currentTemplate;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  Array.prototype.forEach.call(templateOptions, function (btn) {
+    btn.addEventListener("click", function () {
+      /* Only swaps styling/row cap -> typed title/data stay untouched */
+      setTemplate(btn.getAttribute("data-template"));
+      render();
+    });
+  });
+
+  setTemplate("cards");
 
   dataInput.placeholder = SAMPLE_TEXT;
 
@@ -112,7 +135,7 @@
 
     var arrow = document.createElement("div");
     arrow.className = "arrow";
-    arrow.textContent = "→";
+    arrow.textContent = "➔";
 
     var ancient = document.createElement("div");
     ancient.className = "ancient-name";
@@ -154,7 +177,8 @@
       return;
     }
 
-    var visible = rows.slice(0, MAX_ROWS);
+    var maxRows = MAX_ROWS_BY_TEMPLATE[currentTemplate] || 14;
+    var visible = rows.slice(0, maxRows);
     var fragment = document.createDocumentFragment();
     visible.forEach(function (row, index) {
       fragment.appendChild(makeRow(row, index));
@@ -163,17 +187,17 @@
     rowsBox.appendChild(fragment);
     applyEditable();
 
-    if (rows.length > MAX_ROWS) {
+    if (rows.length > maxRows) {
       setStatus(
         visible.length +
           " / " +
-          MAX_ROWS +
+          maxRows +
           " rows shown (" +
-          (rows.length - MAX_ROWS) +
+          (rows.length - maxRows) +
           " extra ignored)",
       );
     } else {
-      setStatus(rows.length + " / " + MAX_ROWS + " rows");
+      setStatus(rows.length + " / " + maxRows + " rows");
     }
   }
 
@@ -204,16 +228,25 @@
   function updateRowFontSize() {
     var size = Math.max(ROW_FONT_MIN, Math.min(ROW_FONT_MAX, rowFontSize));
     rowFontSize = size;
-    document.documentElement.style.setProperty("--row-font-size", rowFontSize + "px");
+    document.documentElement.style.setProperty(
+      "--row-font-size",
+      rowFontSize + "px",
+    );
     if (rowFontValue) {
       rowFontValue.textContent = rowFontSize + "px";
     }
   }
 
   function updateArrowOffset() {
-    var off = Math.max(ARROW_OFFSET_MIN, Math.min(ARROW_OFFSET_MAX, arrowOffsetX));
+    var off = Math.max(
+      ARROW_OFFSET_MIN,
+      Math.min(ARROW_OFFSET_MAX, arrowOffsetX),
+    );
     arrowOffsetX = off;
-    document.documentElement.style.setProperty("--arrow-offset-x", arrowOffsetX + "px");
+    document.documentElement.style.setProperty(
+      "--arrow-offset-x",
+      arrowOffsetX + "px",
+    );
     if (arrowValue) {
       arrowValue.textContent = arrowOffsetX + "px";
     }

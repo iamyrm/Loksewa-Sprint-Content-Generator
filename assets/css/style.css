@@ -24,7 +24,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	font-family: 'Baloo 2', sans-serif;
+	font-family: 'Anek Devanagari', sans-serif;
 	padding: 20px;
 	margin: 0;
 }
@@ -564,10 +564,249 @@ body {
 	border-color: #cc0000;
 }
 
+/* ---------- Template picker (sidebar preview cards) ---------- */
+.template-picker {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 78px);
+	gap: 8px;
+}
+
+.template-option {
+	font-family: inherit;
+	text-align: left;
+	background: #fcf6df;
+	border: 2px solid #e6d3ab;
+	border-radius: 10px;
+	padding: 5px;
+	cursor: pointer;
+	transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.template-option:hover {
+	border-color: #f29f05;
+}
+
+.template-option.active {
+	border-color: #f29f05;
+	box-shadow: 0 0 0 2px rgba(242, 159, 5, .35);
+}
+
+.tpl-name {
+	display: block;
+	font-size: 10px;
+	font-weight: 800;
+	color: #0d2241;
+	margin-bottom: 4px;
+}
+
+.template-thumb {
+	display: block;
+	width: 100%;
+	aspect-ratio: 9 / 16;
+	border-radius: 5px;
+	overflow: hidden;
+	padding: 3px;
+	background: #f8d066;
+}
+
+.tt-inner {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 6px 5px 8px;
+	gap: 4px;
+	background: #fcf6df;
+}
+
+.tt-title {
+	height: 8px;
+	border-radius: 100px;
+	background: #f7b733;
+	margin-bottom: 4px;
+}
+
+.tt-body {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex: 1;
+}
+
+.tt-row {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	background: #faecd0;
+	border-radius: 4px;
+	padding: 4px 4px 4px 0;
+}
+
+.tt-num {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #f29f05;
+	margin-left: 3px;
+	flex-shrink: 0;
+}
+
+.tt-line {
+	height: 4px;
+	border-radius: 2px;
+	background: #0d2241;
+	opacity: .55;
+	flex: 1;
+}
+
+.tt-line.short {
+	flex: 0 0 26%;
+}
+
+.tt-arrow {
+	width: 5px;
+	height: 5px;
+	background: #f29f05;
+	border-radius: 1px;
+	flex-shrink: 0;
+}
+
+.tt-foot {
+	margin-top: auto;
+	height: 6px;
+	border-radius: 100px;
+	background: repeating-linear-gradient(90deg, #f29f05 0 6px, transparent 6px 14px);
+	opacity: .5;
+}
+
+/* List template thumbnail */
+.tt-list {
+	background: #ffffff;
+}
+
+.tt-list .tt-title {
+	background: #f7b733;
+}
+
+.tt-lrow {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.tt-dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #FF0000;
+	flex-shrink: 0;
+}
+
+.tt-lred {
+	height: 4px;
+	border-radius: 2px;
+	background: #000000;
+	flex: 0 0 30%;
+}
+
+.tt-larrow {
+	width: 0;
+	height: 0;
+	border-top: 2.5px solid transparent;
+	border-bottom: 2.5px solid transparent;
+	border-left: 4px solid #000000;
+	flex-shrink: 0;
+}
+
+.tt-lblack {
+	height: 4px;
+	border-radius: 2px;
+	background: #000000;
+	flex: 1;
+}
+
+.tt-list .tt-foot {
+	background: repeating-linear-gradient(90deg, #C8CCD1 0 6px, transparent 6px 14px);
+}
+
+/* ================= TEMPLATE: LIST ================= */
+body[data-template="list"] .canvas,
+body[data-template="list"] .inner-container {
+	background-color: #ffffff;
+}
+
+/* No ring around the watermark logo for the list template */
+body[data-template="list"] .inner-container::before {
+	content: none;
+}
+
+/* List template: header title box has square corners */
+body[data-template="list"] .main-title-box {
+	border-radius: 0;
+}
+
+body[data-template="list"] .table-container {
+	gap: 16px;
+	justify-content: flex-start;
+	padding-top: 6px;
+}
+
+body[data-template="list"] .row {
+	background-color: transparent;
+	border-radius: 0;
+	padding: 0;
+	min-height: 0;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 0 6px;
+}
+
+/* key + arrow + value flow inline (no fixed column split) */
+body[data-template="list"] .col-left,
+body[data-template="list"] .col-right {
+	width: auto;
+	flex: 0 1 auto;
+	align-items: flex-start;
+}
+
+body[data-template="list"] .col-right {
+	min-width: 0;
+	gap: 6px;
+}
+
+/* Black bullet dot (Nepali number hidden) */
+body[data-template="list"] .number-box {
+	width: 8px;
+	height: 8px;
+	min-width: 8px;
+	margin: 8px 0 0 2px;
+	background-color: #FF0000;
+	color: transparent;
+	font-size: 0;
+	line-height: 0;
+}
+
+body[data-template="list"] .river-name {
+	color: #000000;
+	font-weight: 800;
+}
+
+body[data-template="list"] .arrow {
+	color: #000000;
+	font-weight: 800;
+	margin-top: 7px;
+}
+
+body[data-template="list"] .ancient-name {
+	color: #000000;
+	font-weight: 800;
+}
 
 
-/* ---------- Print: only the canvas goes to paper ---------- */
+
+/* ---------- Print: only .canvas goes to paper, single exact 9:16 page ---------- */
 @page {
+	/* 550px x 977.78px @ 96dpi = exact 9:16 canvas, no browser margin */
 	size: 550px 977.78px;
 	margin: 0;
 }
@@ -579,34 +818,60 @@ body {
 		print-color-adjust: exact !important;
 	}
 
+	html,
 	body {
 		display: block;
 		padding: 0;
 		margin: 0;
+		width: 550px;
+		height: 977.78px;
+		min-height: 0;
 		background: #ffffff;
+		overflow: hidden;
 	}
 
 	.sidebar {
 		display: none !important;
 	}
 
+	/* Keep ancestors exactly one page tall so nothing spills onto a 2nd page */
 	.app,
 	.preview-area,
 	.print-container {
 		display: block;
+		position: static;
 		padding: 0;
 		margin: 0;
+		border: 0;
 		overflow: hidden;
 		width: 550px;
 		height: 977.78px;
+		min-height: 0;
+		background: #ffffff;
+	}
+
+	/* Hide everything, then reveal only the canvas subtree */
+	body * {
+		visibility: hidden !important;
+	}
+
+	.canvas,
+	.canvas * {
+		visibility: visible !important;
 	}
 
 	.canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
 		box-shadow: none;
 		outline: none;
 		width: 550px;
 		height: 977.78px;
 		max-width: 550px;
 		max-height: 977.78px;
+		aspect-ratio: auto;
+		margin: 0;
+		overflow: hidden;
 	}
 }

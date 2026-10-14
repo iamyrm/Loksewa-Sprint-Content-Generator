@@ -7,7 +7,8 @@
 	<title>Loksewa Sprint | Content Generator</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700;800&display=swap"
+		rel="stylesheet">
 
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -21,8 +22,53 @@
 			<h1>Content Generator</h1>
 			<p class="hint">
 				Title र data JSON array मा टाइप गर्नुहोस्। Rows auto-number (नेपाली अंक) हुन्छन्,
-				canvas मा बढीमा 14 rows मात्र देखिन्छन्।
+				canvas मा Cards template मा बढीमा 14 र List template मा बढीमा 17 rows देखिन्छन्।
 			</p>
+
+			<div class="field">
+				<label>Template</label>
+				<div class="template-picker" id="templatePicker">
+					<button class="template-option active" data-template="cards" type="button" aria-pressed="true">
+						<span class="tpl-name">1 · Cards</span>
+						<span class="template-thumb">
+							<span class="tt-inner tt-cards">
+								<span class="tt-title"></span>
+								<span class="tt-body">
+									<span class="tt-row"><span class="tt-num"></span><span class="tt-line"></span><span
+											class="tt-arrow"></span><span class="tt-line short"></span></span>
+									<span class="tt-row"><span class="tt-num"></span><span class="tt-line"></span><span
+											class="tt-arrow"></span><span class="tt-line short"></span></span>
+									<span class="tt-row"><span class="tt-num"></span><span class="tt-line"></span><span
+											class="tt-arrow"></span><span class="tt-line short"></span></span>
+									<span class="tt-row"><span class="tt-num"></span><span class="tt-line"></span><span
+											class="tt-arrow"></span><span class="tt-line short"></span></span>
+								</span>
+								<span class="tt-foot"></span>
+							</span>
+						</span>
+					</button>
+
+					<button class="template-option" data-template="list" type="button" aria-pressed="false">
+						<span class="tpl-name">2 · List</span>
+						<span class="template-thumb">
+							<span class="tt-inner tt-list">
+								<span class="tt-title"></span>
+								<span class="tt-body">
+									<span class="tt-lrow"><span class="tt-dot"></span><span class="tt-lred"></span><span
+											class="tt-larrow"></span><span class="tt-lblack"></span></span>
+									<span class="tt-lrow"><span class="tt-dot"></span><span class="tt-lred"></span><span
+											class="tt-larrow"></span><span class="tt-lblack"></span></span>
+									<span class="tt-lrow"><span class="tt-dot"></span><span class="tt-lred"></span><span
+											class="tt-larrow"></span><span class="tt-lblack"></span></span>
+									<span class="tt-lrow"><span class="tt-dot"></span><span class="tt-lred"></span><span
+											class="tt-larrow"></span><span class="tt-lblack"></span></span>
+								</span>
+								<span class="tt-foot"></span>
+							</span>
+						</span>
+					</button>
+				</div>
+			</div>
 
 			<div class="field">
 				<label for="titleInput">Title</label>
