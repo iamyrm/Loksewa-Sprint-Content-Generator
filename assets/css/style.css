@@ -743,6 +743,9 @@ body[data-template="list"] .inner-container::before {
 /* List template: header title box has square corners */
 body[data-template="list"] .main-title-box {
 	border-radius: 0;
+	background-color: yellow;
+	color: red;
+	text-decoration: underline;
 }
 
 body[data-template="list"] .table-container {
