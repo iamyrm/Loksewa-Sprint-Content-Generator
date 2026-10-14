@@ -746,40 +746,39 @@ body[data-template="list"] .main-title-box {
 }
 
 body[data-template="list"] .table-container {
-	gap: 16px;
+	gap: 10px;
 	justify-content: flex-start;
 	padding-top: 6px;
 }
 
 body[data-template="list"] .row {
+	display: block;
 	background-color: transparent;
 	border-radius: 0;
-	padding: 0;
+	/* 18px = bullet 8px + left gap 2px + right gap 8px.
+	   Positive padding + negative indent keeps the bullet flush left on the
+	   first line while wrapped lines start at the "key" text level. */
+	padding: 0 0 0 18px;
+	text-indent: -18px;
 	min-height: 0;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	gap: 0 6px;
 }
 
-/* key + arrow + value flow inline (no fixed column split) */
+/* key + arrow + value flow inline as one paragraph: only the words that
+   do not fit wrap to the next line (never the arrow+value as a block) */
 body[data-template="list"] .col-left,
 body[data-template="list"] .col-right {
+	display: inline;
 	width: auto;
-	flex: 0 1 auto;
-	align-items: flex-start;
 }
 
-body[data-template="list"] .col-right {
-	min-width: 0;
-	gap: 6px;
-}
-
-/* Black bullet dot (Nepali number hidden) */
+/* Red bullet dot (Nepali number hidden) */
 body[data-template="list"] .number-box {
+	display: inline-block;
+	vertical-align: middle;
 	width: 8px;
 	height: 8px;
 	min-width: 8px;
-	margin: 8px 0 0 2px;
+	margin: 0 8px 0 2px;
 	background-color: #FF0000;
 	color: transparent;
 	font-size: 0;
@@ -787,17 +786,20 @@ body[data-template="list"] .number-box {
 }
 
 body[data-template="list"] .river-name {
+	display: inline;
 	color: #000000;
 	font-weight: 800;
 }
 
 body[data-template="list"] .arrow {
+	display: inline;
 	color: #000000;
 	font-weight: 800;
-	margin-top: 7px;
+	margin: 0 6px;
 }
 
 body[data-template="list"] .ancient-name {
+	display: inline;
 	color: #000000;
 	font-weight: 800;
 }
